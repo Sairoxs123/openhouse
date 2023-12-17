@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    {% include 'navbar.html' %}
+
+    <center>
+        <h1>
+            {% if booked %}
+            Reservation already exists.
+            <br><br>
+            <a href="{% url 'add' %}">Return</a>
+
+            {% elif no_exist %}
+            JSSID is invalid.
+
+            {% else %}
+            Reservation is added.
+            <br><br>
+            <a href="{% url 'add' %}">Return</a>
+        </h1>
+    </center>
+
+    {% endif %}
+
+</body>
+
+</html>

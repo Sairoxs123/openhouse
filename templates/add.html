@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    {% include 'navbar.html' %}
+
+    <center>
+        <h1>
+            {% if booked %}
+
+            Reservation has been added.
+
+            {% elif booked == False %}
+
+            Reservation already exists.
+
+            {% elif busy %}
+
+            Student has another meeting at this time.
+
+            {% endif %}
+        </h1>
+    </center>
+
+    <form action="{% url 'add' %}" method="post" style="margin-top: 2.5%;">
+        {% csrf_token %}
+
+        <label>Select Student: </label>
+
+        <input type="text" name="student" list="students" autocomplete="off">
+
+        <datalist id="students">
+            {% for i in students %}
+            <option value="{{ i }}">{{ i.name }}</option>
+            {% endfor %}
+        </datalist>
+
+        <br><br>
+
+        <label>Select Time:</label>
+
+        <input type="text" name="time" list="time" autocomplete="off">
+
+        <datalist id="time">
+            {% for i in available %}
+            <option value="{{ i }}">{{ i }}</option>
+            {% endfor %}
+        </datalist>
+
+        <br><br>
+
+        <input type="submit" value="Submit">
+
+    </form>
+
+</body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    {% include 'navbar.html' %}
+
+    <br>
+
+    <center>
+        <h1>
+            {% if student_added %}
+
+                Student has been added.
+
+            {% elif student_exists %}
+
+                Student already exists.
+
+            {% endif %}
+        </h1>
+    </center>
+
+    <form action="{% url 'add-student' %}" method="post">
+        {% csrf_token %}
+
+        <label>Name:</label>
+        <input type="text" name="name">
+
+        <br><br>
+
+        <label>Class and Section:</label>
+        <input type="text" name="class" placeholder="Ex: 11A">
+
+        <br><br>
+
+        <label>JSSID</label>
+        <input type="text" name="jssid" placeholder="Ex: JSSPSA1234">
+
+        <br><br>
+
+        <button type="submit">Submit</button>
+
+    </form>
+
+</body>
+</html>

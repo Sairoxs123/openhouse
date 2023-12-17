@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    {% if wrong %}
+        <center>
+            <h1>
+                Invalid Password.
+            </h1>
+        </center>
+    {% endif %}
+
+    <form action="{% url 'teacher' %}" method="post">
+        {% csrf_token %}
+
+        <label>Enter Name: </label>
+        <input type="text" name="teacher" placeholder="Select Teacher" list="teachers">
+        <datalist id="teachers">
+
+            {% for i in teachers %}
+
+            <option value="{{ i.name }}">{{ i.subject }}</option>
+
+            {% endfor %}
+
+        </datalist>
+        <br><br>
+
+        <label>Teacher Password: </label>
+        <input type="password" name="pass">
+
+        <br><br>
+
+        <input type="submit" value="Submit">
+
+    </form>
+
+
+</body>
+</html>
